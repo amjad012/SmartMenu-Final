@@ -1,9 +1,13 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import {Button, Card, Image} from "semantic-ui-react";
+import { useParams } from "react-router-dom";
+import {Grid} from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from '../../../app/stores/store';
+import TableDetailedChat from "./TableDetailedChat";
+import TableDetailedInfo from "./TableDetailedInfo";
+import TableDetailedSidebar from "./TableDetailedSidebar";
+import TableDetailedHeader from "./TableDetailsHeader";
 
 export default observer(function TableDetails() {
     const {tableStore} = useStore();
@@ -17,23 +21,15 @@ export default observer(function TableDetails() {
     if (loadingInitial || !table) return <LoadingComponent />;
 
     return (
-        <Card fluid>
-            
-            <Card.Content>
-                <Card.Header>{table.number}</Card.Header>
-                <Card.Meta>
-                    <span>{table.date}</span>
-                </Card.Meta>
-                <Card.Description>
-                   
-                </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-                <Button.Group widths='2'>
-                    <Button as={Link} to={`/manage/${table.id}`} basic color='blue' content='Edit' />
-                    <Button as={Link} to='/tables' basic color='grey' content='Cancel' />
-                </Button.Group>
-            </Card.Content>
-        </Card>
+        <Grid>
+            <Grid.Column width={10}>
+                <TableDetailedHeader table={table}/>
+                <TableDetailedInfo table={table}/>
+                <TableDetailedChat/>
+            </Grid.Column>
+            <Grid.Column width={6}>
+                <TableDetailedSidebar/>
+            </Grid.Column>
+        </Grid>
     )
 })

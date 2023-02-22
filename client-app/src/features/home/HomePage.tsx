@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
-import { Container } from "semantic-ui-react";
+import { Container, Header, Segment,Image, Button, ItemDescription, Item } from "semantic-ui-react";
 
 export default function HomePage() {
     return (
-        <Container style={{marginTop: '7em'}}>
-            <h1>Home page</h1>
-            <h3>Go to <Link to='/tables'>Tables</Link></h3>
-        </Container>
+        <Segment inverted textAlign="center" vertical className="masthead">
+            <Container text>
+                <Header as='h1' inverted>
+                    <Image size='massive' src='/assets/logo.png' alt='logo' style={{marginBottom:12}} />
+                    SmartMenu   
+                </Header>
+                <Header as='h2' inverted content='Welcome to SmartMenu'/>
+                <Item.Description as='h3'content='Browse the menu and order directly from application'/>
+                <Button as={Link} to='/tables' size='huge' positive> Take me to the SmartMenu</Button>
+            </Container>
+        </Segment>
     )
 }

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
+import TableFilters from "./TableFilters";
 import TableList from "./TableList";
 
 export default observer(function TableDashboard() {
@@ -21,7 +22,7 @@ export default observer(function TableDashboard() {
                 <TableList />
             </Grid.Column>
             <Grid.Column width='6'>
-                <h2>Table filters</h2>
+                <TableFilters/>
             </Grid.Column>
         </Grid>
     )
