@@ -10,6 +10,7 @@ export default function NavBar() {
                     SmartMenu
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/tables' name='Tables' />
+                <Menu.Item as={NavLink} to='/errors' name='Errors' />
                 <Menu.Item>
                     <Button as={NavLink} to='/createTable' positive content='Create Table' />
                 </Menu.Item>

@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import {Table} from "../../../app/models/table";
 
@@ -46,8 +47,8 @@ export default observer (function TableDetailedHeader({table}: Props) {
             <Segment clearing attached='bottom'>
                 <Button color='teal'>Join Table</Button>
                 <Button>Cancel attendance</Button>
-                <Button color='orange' floated='right'>
-                    Manage Event
+                <Button as={Link} to={`/manage/${table.id}`} color='orange' floated='right'>
+                    Manage Table
                 </Button>
             </Segment>
         </Segment.Group>

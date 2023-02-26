@@ -1,4 +1,6 @@
+using Application.Core;
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -6,12 +8,19 @@ namespace Application.Tables
 {
     public class Create
     {
-        public class Command : IRequest
+        public class Command : IRequest<Result<Unit>>
         {
             public Table Table { get; set; }
         }
+        public class CommandValidator : AbstractValidator<Command> // for validate
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Table).SetValidator(new TableValidator());             
+            }
+        }
 
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
 
@@ -20,13 +29,15 @@ namespace Application.Tables
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 _context.Tables.Add(request.Table);
 
-                await _context.SaveChangesAsync();
+                var result = await _context.SaveChangesAsync() > 0;
 
-                return Unit.Value;
+                if(!result) return Result<Unit>.Failure("Failed to create tavle");
+
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }
