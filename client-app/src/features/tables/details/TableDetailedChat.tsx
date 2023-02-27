@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import React from 'react'
-import {Segment, Header, Comment, Form, Button} from 'semantic-ui-react'
+import {Segment, Header, Comment, Form, Button, Container} from 'semantic-ui-react'
 
 export default observer(function TableDetailedChat() {
     return (
@@ -9,21 +9,21 @@ export default observer(function TableDetailedChat() {
                 textAlign='center'
                 attached='top'
                 inverted
-                color='teal'
+                color='blue'
                 style={{border: 'none'}}
             >
-                <Header>Chat about this event</Header>
+                <Header>Table Requests</Header>
             </Segment>
             <Segment attached>
                 <Comment.Group>
                     <Comment>
                         <Comment.Avatar src='/assets/user.png'/>
                         <Comment.Content>
-                            <Comment.Author as='a'>Matt</Comment.Author>
+                            <Comment.Author as='a'>Bob</Comment.Author>
                             <Comment.Metadata>
                                 <div>Today at 5:42PM</div>
                             </Comment.Metadata>
-                            <Comment.Text>How artistic!</Comment.Text>
+                            <Comment.Text>Cleaning the table</Comment.Text>
                             <Comment.Actions>
                                 <Comment.Action>Reply</Comment.Action>
                             </Comment.Actions>
@@ -33,11 +33,11 @@ export default observer(function TableDetailedChat() {
                     <Comment>
                         <Comment.Avatar src='/assets/user.png'/>
                         <Comment.Content>
-                            <Comment.Author as='a'>Joe Henderson</Comment.Author>
+                            <Comment.Author as='a'>Sally</Comment.Author>
                             <Comment.Metadata>
-                                <div>5 days ago</div>
+                                <div>2 mins ago</div>
                             </Comment.Metadata>
-                            <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
+                            <Comment.Text>Check</Comment.Text>
                             <Comment.Actions>
                                 <Comment.Action>Reply</Comment.Action>
                             </Comment.Actions>
@@ -45,16 +45,79 @@ export default observer(function TableDetailedChat() {
                     </Comment>
 
                     <Form reply>
-                        <Form.TextArea/>
+                       
                         <Button
-                            content='Add Reply'
+                            content='Send Reqeust'
                             labelPosition='left'
                             icon='edit'
-                            primary
+                            positive
+                        />
+                        <Button
+                            content='Requests List'
+                            floated='right'
+                            icon='list'
+                            color='blue'
                         />
                     </Form>
                 </Comment.Group>
             </Segment>
+            <Segment 
+                textAlign='center'
+                attached='top'
+                inverted
+                color='red'
+                style={{border: 'none', marginTop:'30px'}}
+            >
+                <Header>Table Orders</Header>
+            </Segment>
+            <Segment attached >
+                <Comment.Group>
+                    <Comment>
+                        <Comment.Avatar src='/assets/user.png'/>
+                        <Comment.Content>
+                            <Comment.Author as='a'>Bob</Comment.Author>
+                            <Comment.Metadata>
+                                <div>Today at 5:42PM</div>
+                            </Comment.Metadata>
+                            <Comment.Text>Pizza</Comment.Text>
+                            <Comment.Actions>
+                                <Comment.Action>Reply</Comment.Action>
+                            </Comment.Actions>
+                        </Comment.Content>
+                    </Comment>
+
+                    <Comment>
+                        <Comment.Avatar src='/assets/user.png'/>
+                        <Comment.Content>
+                            <Comment.Author as='a'>Sally</Comment.Author>
+                            <Comment.Metadata>
+                                <div>2 mins ago</div>
+                            </Comment.Metadata>
+                            <Comment.Text>Tuna Sandwish</Comment.Text>
+                            <Comment.Actions>
+                                <Comment.Action>Reply</Comment.Action>
+                            </Comment.Actions>
+                        </Comment.Content>
+                    </Comment>
+
+                    <Form reply>
+                        
+                        <Button
+                            content='Order now'
+                            labelPosition='left'
+                            icon='edit'
+                            positive
+                        />
+                        <Button
+                            content='Food Menu'
+                            floated='right'                       
+                            color='red'
+                            icon='clipboard list'
+                        />
+                    </Form>
+                </Comment.Group>
+            </Segment>
+          
         </>
 
     )

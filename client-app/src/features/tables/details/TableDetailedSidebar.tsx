@@ -14,7 +14,7 @@ export default observer(function TableDetailedSidebar () {
                 inverted
                 color='teal'
             >
-                3 People Going
+                3 Table Sharing 
             </Segment>
             <Segment attached>
                 <List relaxed divided>
@@ -24,14 +24,13 @@ export default observer(function TableDetailedSidebar () {
                             color='orange'
                             ribbon='right'
                         >
-                            Host
+                            Table
                         </Label>
                         <Image size='tiny' src={'/assets/user.png'} />
                         <Item.Content verticalAlign='middle'>
                             <Item.Header as='h3'>
                                 <Link to={`#`}>Bob</Link>
                             </Item.Header>
-                            <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
                         </Item.Content>
                     </Item>
 
@@ -41,7 +40,6 @@ export default observer(function TableDetailedSidebar () {
                             <Item.Header as='h3'>
                                 <Link to={`#`}>Tom</Link>
                             </Item.Header>
-                            <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
                         </Item.Content>
                     </Item>
 
