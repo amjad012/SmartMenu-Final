@@ -1,0 +1,3 @@
+- for drop database
+dotnet ef database drop -s API -p Persistence
+-dotnet watch --no-hot-reload

@@ -6,6 +6,7 @@ import TableDetails from "../../features/tables/details/TableDetails";
 import TableForm from "../../features/tables/form/TableForm";
 import TestErrors from "../../features/errors/TestError";
 import NotFound from "../../features/errors/NotFound";
+import ServerError from "../../features/errors/ServerError";
 
 export const routes: RouteObject[] = [
     {
@@ -18,7 +19,8 @@ export const routes: RouteObject[] = [
             {path: 'manage/:id', element: <TableForm key='manage' />},
             {path: 'errors', element: <TestErrors />},
             {path: 'not-found', element: <NotFound />},
-            {path: '*-found', element: <Navigate replace to='/not-found' />},
+            {path: 'server-error', element: <ServerError />},
+            {path: '*', element: <Navigate replace to='/not-found' />},
         ]
     }
 ]

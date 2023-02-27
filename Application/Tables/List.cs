@@ -22,7 +22,7 @@ namespace Application.Tables
 
             public async Task<Result<List<Table>>> Handle(Query request, CancellationToken token)
             {
-                return Result<List<Table>>.Success(await _context.Tables.ToListAsync(token));
+                return Result<List<Table>>.Success(await _context.Tables.ToListAsync());
             }
         }
     }

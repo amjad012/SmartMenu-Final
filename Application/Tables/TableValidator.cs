@@ -7,7 +7,7 @@ namespace Application.Tables
     {
         public TableValidator()
         {
-            RuleFor(x => x.Number).Equals(0);
+            RuleFor(x => x.Number).NotEmpty();
             RuleFor(x => x.Date).NotEmpty();
             
         }

@@ -1,7 +1,9 @@
-import axios, { Axios, AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { config } from 'process';
 import { toast } from 'react-toastify';
 import { Table } from '../models/table';
 import { router } from '../router/Routes';
+import { store } from '../stores/store';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -20,10 +22,23 @@ axios.interceptors.response.use(async response => {
 
 }, //happen when request rejected 
     (error:AxiosError) => {
-        const{data,status} = error.response!;
+        const{data,status,config} = error.response as AxiosResponse;
         switch (status) {
             case 400:
-                toast.error('bad request');
+               if(config.method === 'get' && data.errors.hasOwnProperty('id')){
+                    router.navigate('/not-found');
+               }
+                if(data.errors) {
+                    const modalStateErrors = [];
+                    for(const key in data.errors){
+                        if(data.errors[key]){
+                            modalStateErrors.push(data.erros[key])
+                        }
+                    }
+                    throw modalStateErrors.flat();
+                }else {
+                    toast.error(data);
+                }
                 break;
             case 401:
                 toast.error('unauthroised');
@@ -35,7 +50,8 @@ axios.interceptors.response.use(async response => {
                 router.navigate('/not-found');
                 break;
             case 500:
-                toast.error('server error');     
+                store.commonStore.setServerError(data);
+                router.navigate('/server-error');
                 break;                     
         }
         return Promise.reject(error);
