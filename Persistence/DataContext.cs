@@ -10,5 +10,6 @@ namespace Persistence
         }
 
         public DbSet<Table> Tables { get; set; }
+        public DbSet<Request> Requests { get; set; }
     }
 }

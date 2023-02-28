@@ -9,6 +9,7 @@ namespace Persistence
             if (context.Tables.Any()) return;
             
             var tables = new List<Table>
+
             {
                 new Table
                 {
@@ -73,7 +74,79 @@ namespace Persistence
                 },
             };
 
+            if(context.Requests.Any()) return;
+
+            var requests = new List<Request> {
+                
+                new Request
+                {
+                    Name = "Cleaning the table",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Check",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Fork",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Plate",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Knife",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Glass",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Pepper",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Salt",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Tissues",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Limon",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Wipes",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Menu",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+                new Request
+                {
+                    Name = "Toothpick",
+                    Date = DateTime.UtcNow.AddMonths(-2)
+                },
+
+            };
             await context.Tables.AddRangeAsync(tables);
+            await context.Requests.AddRangeAsync(requests);
             await context.SaveChangesAsync();
         }
     }

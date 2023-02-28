@@ -43,7 +43,7 @@ export default observer(function TableForm() {
         <Segment clearing>
             <Form onSubmit={handleSubmit} autoComplete='off'>
             <Form.Input placeholder="Number" value={table.number} name='number' onChange={handleInputChange} />
-        <Form.Input type='date'placeholder="Date" value={table.date} name='date' onChange={handleInputChange} />
+            <Form.Input type='date'placeholder="Date" value={table.date} name='date' onChange={handleInputChange} />
             
                 <Button loading={loading} floated='right' positive type='submit' content='Submit' />
                 <Button as={Link} to='/tables' floated='right' type='button' content='Cancel' />
