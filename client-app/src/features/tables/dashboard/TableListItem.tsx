@@ -38,6 +38,7 @@ export default function TableListItem({table}:Props) {
                 color='teal'
                 floated='right'
                 content='View'
+                
                 />
         </Segment>
        </Segment.Group>

@@ -9,6 +9,7 @@ import NotFound from "../../features/errors/NotFound";
 import ServerError from "../../features/errors/ServerError";
 import RequestDashboard from "../../features/requests/dshboard/RequestDashboard";
 import RequestForm from "../../features/requests/form/RequestForm";
+import RequestDetails from "../../features/requests/details/RequestDetails";
 
 export const routes: RouteObject[] = [
     {
@@ -23,7 +24,7 @@ export const routes: RouteObject[] = [
 
             //for request
             {path: 'requests', element: <RequestDashboard />},
-            // {path: 'requests/:id', element: <RequestDetails />},
+            {path: 'requests/:id', element: <RequestDetails />},
             {path: 'createRequest', element: <RequestForm key='create' />},
             {path: 'manage/:id', element: <RequestForm key='manage' />},
 

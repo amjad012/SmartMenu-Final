@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {Segment, Header, Comment, Form, Button, Container} from 'semantic-ui-react'
 
 export default observer(function TableDetailedChat() {
@@ -53,6 +54,7 @@ export default observer(function TableDetailedChat() {
                             positive
                         />
                         <Button
+                            as={Link} to={`/requests`}
                             content='Requests List'
                             floated='right'
                             icon='list'

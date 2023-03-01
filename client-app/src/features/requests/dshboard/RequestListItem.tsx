@@ -17,18 +17,15 @@ export default function RequestListItem({ request }: Props) {
                 {request.name}
               </Item.Header>
               <Button
-                as={Link}
-                to={`/manage/${request.id}`}
+                as={Link} to={`/requests/${request.id}`}
                 color="teal"
                 floated="right"
-                content="Edit"
+                content="View"
               />
               <Button
-                as={Link}
-                to={`/requests/${request.id}`}
-                color="red"
+                color="green"
                 floated="right"
-                content="Delete"
+                content="Select"
               />
             </Item.Content>
           </Item>

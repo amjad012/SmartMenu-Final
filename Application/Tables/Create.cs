@@ -35,7 +35,7 @@ namespace Application.Tables
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if(!result) return Result<Unit>.Failure("Failed to create tavle");
+                if(!result) return Result<Unit>.Failure("Failed to create table");
 
                 return Result<Unit>.Success(Unit.Value);
             }

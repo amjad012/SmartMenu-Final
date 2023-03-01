@@ -22,7 +22,7 @@ export default observer(function RequestDashboard() {
                 <RequestList />
             </Grid.Column>
             <Grid.Column width='6'>
-                
+               
             </Grid.Column>
         </Grid>
     )
