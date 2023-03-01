@@ -38,11 +38,11 @@ namespace Persistence.Migrations
                     b.Property<string>("DisplayName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("EmailConfirmed")
+                    b.Property<bool>("Confirmed")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("LockoutEnabled")
@@ -51,7 +51,7 @@ namespace Persistence.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("NormalizedEmail")
+                    b.Property<string>("Normalized")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
@@ -80,8 +80,8 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+                    b.HasIndex("Normalized")
+                        .HasDatabaseName("Index");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
