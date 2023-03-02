@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Application.Core;
 
-namespace API.middleware
-{ 
+namespace API.Middleware
+{
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
@@ -35,10 +31,9 @@ namespace API.middleware
 
                 var response = _env.IsDevelopment()
                     ? new AppException(context.Response.StatusCode, ex.Message, ex.StackTrace?.ToString())
-                   //if we no in devolpment
                     : new AppException(context.Response.StatusCode, "Internal Server Error");
 
-                var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+                var options = new JsonSerializerOptions{PropertyNamingPolicy = JsonNamingPolicy.CamelCase};
 
                 var json = JsonSerializer.Serialize(response, options);
 
