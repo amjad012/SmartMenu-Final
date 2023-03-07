@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button, Icon, Item, Segment } from 'semantic-ui-react';
 import { Table } from '../../../app/models/table';
 import React from 'react';
+import { format } from "date-fns";
 interface Props {
     table : Table
 }
@@ -24,7 +25,7 @@ export default function TableListItem({table}:Props) {
         </Segment>
         <Segment>
             <span>
-                <Icon name='clock'/>{table.date}
+                <Icon name='clock'/>{format(table.date!, 'dd MMM yyyy h:mm aa')}
                 <Icon name='marker'/>
             </span>
         </Segment>

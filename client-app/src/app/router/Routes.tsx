@@ -10,6 +10,7 @@ import ServerError from "../../features/errors/ServerError";
 import RequestDashboard from "../../features/requests/dshboard/RequestDashboard";
 import RequestForm from "../../features/requests/form/RequestForm";
 import RequestDetails from "../../features/requests/details/RequestDetails";
+import LoginForm from "../../users/LoginForm";
 
 export const routes: RouteObject[] = [
     {
@@ -21,6 +22,7 @@ export const routes: RouteObject[] = [
             {path: 'tables/:id', element: <TableDetails />},
             {path: 'createTable', element: <TableForm key='create' />},
             {path: 'manage/:id', element: <TableForm key='manage' />},
+            {path: 'login', element: <LoginForm key='manage' />},
 
             //for request
             {path: 'requests', element: <RequestDashboard />},

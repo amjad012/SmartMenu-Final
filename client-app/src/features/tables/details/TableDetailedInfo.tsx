@@ -2,6 +2,8 @@ import { observer } from 'mobx-react-lite';
 import React from 'react'
 import {Segment, Grid, Icon} from 'semantic-ui-react'
 import {Table} from "../../../app/models/table";
+import { format } from "date-fns";
+
 
 interface Props {
     table: Table
@@ -27,7 +29,7 @@ export default observer(function TableDetailedInfo({table}: Props) {
                     </Grid.Column>
                     <Grid.Column width={15}>
             <span>
-              {table.date}
+              {format(table.date!, 'dd MMM yyy h:mm aa')}
             </span>
                     </Grid.Column>
                 </Grid>

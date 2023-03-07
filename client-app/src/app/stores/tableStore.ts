@@ -2,10 +2,11 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { Table } from "../models/table";
 import agent from "../api/agent";
 import { v4 as uuid } from 'uuid';
+import { format } from "date-fns";
 
 export default class TableStore {
     tableRegistry = new Map<string, Table>();
-    selectedTable?: Table = undefined;
+    selectedTable: Table | undefined = undefined;
     editMode = false;
     loading = false;
     loadingInitial = false;
@@ -17,20 +18,21 @@ export default class TableStore {
         return(
             Object.entries(
                 this.tablesByDate.reduce((tables,table)=>{
-                    const date = table.date;
+                    const date = format(table.date!, 'dd MMM yyyy');
                     tables[date] = tables[date] ? [...tables[date],table] : [table];
                     return tables; 
                 },{} as {[key:string]: Table[]})
             )
         )
     }
+
     get tablesByDate() {
         return Array.from(this.tableRegistry.values()).sort((a, b) =>
-            Date.parse(a.date) - Date.parse(b.date))
+            a.date!.getTime() - b.date!.getTime());
     }
 
     loadTables = async () => {
-        this.setLoadingInitial(true);
+        this.loadingInitial=true;
         try {
             const tables = await agent.Tables.list();
             tables.forEach(table => {
@@ -65,7 +67,7 @@ export default class TableStore {
     }
 
     private setTable = (table: Table) => {
-        table.date = table.date.split('T')[0];
+        table.date = new Date(table.date!)
         this.tableRegistry.set(table.id, table);
     }
 

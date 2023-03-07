@@ -1,7 +1,10 @@
+import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { Container, Header, Segment,Image, Button, ItemDescription, Item } from "semantic-ui-react";
+import { useStore } from "../../app/stores/store";
 
-export default function HomePage() {
+export default observer (function HomePage() {
+    const {userStore} = useStore();
     return (
         <Segment inverted textAlign="center" vertical className="masthead">
             <Container text>
@@ -9,10 +12,22 @@ export default function HomePage() {
                     <Image size='massive' src='/assets/logo.png' alt='logo' style={{marginBottom:12}} />
                     SmartMenu   
                 </Header>
-                <Header as='h2' inverted content='Welcome to SmartMenu'/>
+    
+                {userStore.isLoggedIn ? (
+                    <>
+                        <Header as='h2' inverted content='Welcome to SmartMenu'/>
+                        <Button as={Link} to='/tables' size='huge' positive>
+                            Go to SmartMenu
+                        </Button>
+                    </>
+                    ) : (
+                        <Button as={Link} to='/login' size='huge' positive>
+                            Login
+                        </Button>
+
+                    )}
                 <Item.Description as='h3'content='Browse the menu and order directly from application'/>
-                <Button as={Link} to='/tables' size='huge' positive> Take me to the SmartMenu</Button>
             </Container>
         </Segment>
     )
-}
+})

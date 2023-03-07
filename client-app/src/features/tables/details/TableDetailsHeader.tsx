@@ -3,6 +3,8 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import {Table} from "../../../app/models/table";
+import { format } from "date-fns";
+
 
 const tableImageStyle = {
     filter: 'brightness(30%)'
@@ -35,7 +37,7 @@ export default observer (function TableDetailedHeader({table}: Props) {
                                     content={table.number}
                                     style={{color: 'white'}}
                                 />
-                                <p>{table.date}</p>
+                                <p>{format(table.date!, 'dd MMM yyyy')}</p>
                                 <p>
                                     Opened by <strong>Bob</strong>
                                 </p>

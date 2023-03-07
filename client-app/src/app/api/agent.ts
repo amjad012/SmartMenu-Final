@@ -4,6 +4,7 @@ import { Table } from '../models/table';
 import { Request } from '../models/request';
 import { router } from '../router/Routes';
 import { store } from '../stores/store';
+import { User, UserFormValues } from '../models/user';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -78,10 +79,16 @@ const Requests = {
     update: (request: Request) => requests.put<void>(`/requests/${request.id}`, request),
     delete: (id: string) => requests.del<void>(`/requests/${id}`)
 }
+const Account = {
+    current: () => requests.get<User>('account'),
+    login: (user: UserFormValues) => requests.post<User>('/account/login', user),
+    register: (user: UserFormValues) => requests.post<User>('/account/register', user)
+}
 
 const agent = {
     Tables,
-    Requests
+    Requests,
+    Account
     
 }
 
