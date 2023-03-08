@@ -14,7 +14,7 @@ export default observer(function TableDashboard() {
         if (tableRegistry.size <= 1) loadTables();
     }, [loadTables])
   
-    if (tableStore.loadingInitial) return <LoadingComponent content='Loading app...' />
+    if (tableStore.loadingInitial) return <LoadingComponent content='Loading tables...' />
     
     return (
         <Grid>

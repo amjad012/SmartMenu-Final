@@ -10,13 +10,12 @@ export default observer(function LoginForm() {
     return (
         <Formik
             initialValues={{ email: '', password: '', error: null }}
-            onSubmit={(values, { setErrors }) =>//a function that allows us to set errors inside our form.
-                userStore.login(values).catch(error => 
-                    setErrors({ error: 'Invalid email or password' }))}
+            onSubmit={(values, { setErrors }) =>
+                userStore.login(values).catch(error => setErrors({ error: 'Invalid email or password' }))}
         >
             {({ handleSubmit, isSubmitting, errors }) => (
                 <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
-                    <Header as='h2' content='Login to Smart Menu' color="teal" textAlign="center" />
+                    <Header as='h2' content='Login to Reactivities' color="teal" textAlign="center" />
                     <MyTextInput placeholder="Email" name='email' />
                     <MyTextInput placeholder="Password" name='password' type='password' />
                     <ErrorMessage name='error' render={() => 

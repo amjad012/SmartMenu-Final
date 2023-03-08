@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {Segment, Header, Comment, Form, Button, Container} from 'semantic-ui-react'
+import {Segment, Header, Comment, Form, Button} from 'semantic-ui-react'
 
 export default observer(function TableDetailedChat() {
     return (

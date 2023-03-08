@@ -9,8 +9,6 @@ interface Store {
     tableStore: TableStore;
     commonStore:CommonStore;
     requestStore:requestStore;
-
-    //for users
     userStore: UserStore;
     modalStore: ModalStore;
 
@@ -20,8 +18,6 @@ export const store: Store = {
     tableStore: new TableStore(),
     commonStore: new CommonStore(),
     requestStore: new requestStore(),
-
-    //for users
     userStore: new UserStore(),
     modalStore: new ModalStore()
 

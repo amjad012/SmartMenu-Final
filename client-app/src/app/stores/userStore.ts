@@ -11,13 +11,13 @@ export default class UserStore {
         makeAutoObservable(this)
     }
 
-    get isLoggedIn() { //if user is loggedIn
+    get isLoggedIn() {
         return !!this.user;
     }
 
     login = async (creds: UserFormValues) => {
         try {
-            const user = await agent.Account.login(creds);//after we get he user back from api
+            const user = await agent.Account.login(creds);
             store.commonStore.setToken(user.token);
             runInAction(() => this.user = user);
             router.navigate('/tables');
@@ -43,7 +43,7 @@ export default class UserStore {
     logout = () => {
         store.commonStore.setToken(null);
         this.user = null;
-        router.navigate('/');//back to home page
+        router.navigate('/');
     }
 
     getUser = async () => {

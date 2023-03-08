@@ -22,7 +22,7 @@ export const routes: RouteObject[] = [
             {path: 'tables/:id', element: <TableDetails />},
             {path: 'createTable', element: <TableForm key='create' />},
             {path: 'manage/:id', element: <TableForm key='manage' />},
-            {path: 'login', element: <LoginForm key='manage' />},
+            
 
             //for request
             {path: 'requests', element: <RequestDashboard />},
@@ -35,6 +35,8 @@ export const routes: RouteObject[] = [
             {path: 'not-found', element: <NotFound />},
             {path: 'server-error', element: <ServerError />},
             {path: '*', element: <Navigate replace to='/not-found' />},
+
+            {path: 'login', element: <LoginForm key='manage' />},
         ]
     }
 ]
