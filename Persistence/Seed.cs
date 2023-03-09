@@ -12,9 +12,11 @@ namespace Persistence
             {
                 var users = new List<AppUser>
                 {
-                    new AppUser{DisplayName = "Amjad", UserName="amjad", Email="amjad@test.com"},
-                    new AppUser{DisplayName = "Bob", UserName="bob", Email="bob@test.com"},
-                    new AppUser{DisplayName = "jane", UserName="jane", Email="jane@test.com"}
+                    new AppUser{DisplayName = "Admin", UserName="admin", Email="admin@test.com", UserType="Admin"},
+                    new AppUser{DisplayName = "Amjad", UserName="amjad", Email="amjad@test.com", UserType="Chef"},
+                    new AppUser{DisplayName = "Bob", UserName="bob", Email="bob@test.com", UserType="Waiter"},
+                    new AppUser{DisplayName = "jane", UserName="jane", Email="jane@test.com",UserType="Customer"},
+                    new AppUser{DisplayName = "rexo", UserName="rexo", Email="rexo@test.com",UserType="Customer"}
                 };
                 foreach(var user in users)
                 {
@@ -89,80 +91,8 @@ namespace Persistence
                     Number = 10
                 },
             };
-
-            if(context.Requests.Any()) return;
-
-            var requests = new List<Request> {
-                
-                new Request
-                {
-                    Name = "Cleaning the table",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Check",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Fork",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Plate",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Knife",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Glass",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Pepper",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Salt",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Tissues",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Limon",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Wipes",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Menu",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-                new Request
-                {
-                    Name = "Toothpick",
-                    Date = DateTime.UtcNow.AddMonths(-2)
-                },
-
-            };
+          
             await context.Tables.AddRangeAsync(tables);
-            await context.Requests.AddRangeAsync(requests);
             await context.SaveChangesAsync();
         }
     }

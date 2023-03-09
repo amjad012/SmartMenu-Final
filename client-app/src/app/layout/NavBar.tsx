@@ -12,10 +12,10 @@ export default observer(function NavBar() {
                     <img src='/assets/logo.png' alt='logo' style={{marginRight: 10}}/>
                     SmartMenu
                 </Menu.Item>
-                <Menu.Item as={NavLink} to='/activities' name='Activities' />
+                <Menu.Item as={NavLink} to='/tables' name='Tables' />
                 <Menu.Item as={NavLink} to='/errors' name='Errors' />
                 <Menu.Item>
-                    <Button as={NavLink} to='/createActivity' positive content='Create Activity' />
+                    <Button as={NavLink} to='/createTable' positive content='Create Table' />
                 </Menu.Item>
                 <Menu.Item position='right'>
                     <Image avatar spaced='right' src={user?.image || '/assets/user.png'} />

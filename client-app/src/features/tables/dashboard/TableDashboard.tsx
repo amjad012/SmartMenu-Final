@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
-import TableFilters from "./TableFilters";
 import TableList from "./TableList";
 
 export default observer(function TableDashboard() {
@@ -17,12 +16,9 @@ export default observer(function TableDashboard() {
     if (tableStore.loadingInitial) return <LoadingComponent content='Loading tables...' />
     
     return (
-        <Grid>
-            <Grid.Column width='10'>
+        <Grid>        
+            <Grid.Column >
                 <TableList />
-            </Grid.Column>
-            <Grid.Column width='6'>
-                <TableFilters/>
             </Grid.Column>
         </Grid>
     )

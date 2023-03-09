@@ -8,7 +8,6 @@ namespace Application.Core
         public MappingProfiles()
         {
             CreateMap<Table, Table>();
-            CreateMap<Request, Request>();
         }
     }
 }

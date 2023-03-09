@@ -1,7 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { Table } from '../models/table';
-import { Request } from '../models/request';
 import { router } from '../router/Routes';
 import { store } from '../stores/store';
 import { User, UserFormValues } from '../models/user';
@@ -78,13 +77,7 @@ const Tables = {
     update: (table: Table) => requests.put<void>(`/tables/${table.id}`, table),
     delete: (id: string) => requests.del<void>(`/tables/${id}`)
 }
-const Requests = {
-    list: () => requests.get<Request[]>(`/requests`),
-    details: (id: string) => requests.get<Request>(`/requests/${id}`),
-    create: (request: Request) => requests.post<void>(`/requests`, request),
-    update: (request: Request) => requests.put<void>(`/requests/${request.id}`, request),
-    delete: (id: string) => requests.del<void>(`/requests/${id}`)
-}
+
 const Account = {
     current: () => requests.get<User>('account'),
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
@@ -93,7 +86,6 @@ const Account = {
 
 const agent = {
     Tables,
-    Requests,
     Account
     
 }

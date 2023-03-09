@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { Fragment } from 'react';
-import { Header} from "semantic-ui-react";
+import { Header,Grid} from "semantic-ui-react";
 import { useStore } from '../../../app/stores/store';
 import TableListItem from './TableListItem';
 
@@ -12,15 +12,11 @@ export default observer(function TableList() {
     return (
         <>
             {groupedTables.map(([group, tables]) => (
-                <Fragment key={group}>
-                    <Header sub color='teal'>
-                        {group}
-                    </Header>
+                <Grid key={group} columns={3} >
                     {tables.map(table => (
                         <TableListItem key={table.id} table={table} />
                     ))}
-
-                </Fragment>
+                </Grid>
             ))}
         </>
 

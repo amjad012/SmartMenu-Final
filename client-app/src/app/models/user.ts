@@ -11,4 +11,5 @@ export interface UserFormValues {
     password: string;
     displayName?: string;
     username?: string;
+    userType:string;
 }
