@@ -1,12 +1,10 @@
 using Application.Tables;
 using Domain;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-   [AllowAnonymous]
     public class TablesController : BaseApiController
     {
         [HttpGet]

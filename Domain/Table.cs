@@ -6,6 +6,6 @@ namespace Domain
         public DateTime Date { get; set; } 
         public int Number { get; set; }
 
-        public ICollection<TableAttendee> Attendees{ get; set; }
+        public ICollection<TableAttendee > Attendees{ get; set; } = new List<TableAttendee>(); 
     }
 }

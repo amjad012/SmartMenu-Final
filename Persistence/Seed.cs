@@ -12,11 +12,11 @@ namespace Persistence
             {
                 var users = new List<AppUser>
                 {
-                    new AppUser{DisplayName = "Admin", UserName="admin", Email="admin@test.com", UserType="Admin"},
-                    new AppUser{DisplayName = "Amjad", UserName="amjad", Email="amjad@test.com", UserType="Chef"},
-                    new AppUser{DisplayName = "Bob", UserName="bob", Email="bob@test.com", UserType="Waiter"},
-                    new AppUser{DisplayName = "jane", UserName="jane", Email="jane@test.com",UserType="Customer"},
-                    new AppUser{DisplayName = "rexo", UserName="rexo", Email="rexo@test.com",UserType="Customer"}
+                    new AppUser{DisplayName = "Admin", UserName="admin", Email="admin@test.com"},
+                    new AppUser{DisplayName = "Amjad", UserName="amjad", Email="amjad@test.com"},
+                    new AppUser{DisplayName = "Bob", UserName="bob", Email="bob@test.com"},
+                    new AppUser{DisplayName = "jane", UserName="jane", Email="jane@test.com"},
+                    new AppUser{DisplayName = "rexo", UserName="rexo", Email="rexo@test.com"}
                 };
                 foreach(var user in users)
                 {
