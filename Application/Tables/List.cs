@@ -1,4 +1,6 @@
 using Application.Core;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -9,24 +11,26 @@ namespace Application.Tables
 {
     public class List
     {
-        public class Query : IRequest<Result<List<Table>>> { }
+        public class Query : IRequest<Result<List<TableDto>>> { }
 
-        public class Handler : IRequestHandler<Query, Result<List<Table>>>
+        public class Handler : IRequestHandler<Query, Result<List<TableDto>>>
         {
             private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-            public Handler(DataContext context)
+            public Handler(DataContext context,IMapper mapper)
             {
+                 _mapper = mapper;
                 _context = context;
             }
 
-            public async Task<Result<List<Table>>> Handle(Query request, CancellationToken token)
+            public async Task<Result<List<TableDto>>> Handle(Query request, CancellationToken token)
             {
                 var tables = await _context.Tables
-                    .Include(a => a.Attendees)
-                    .ThenInclude(u => u.AppUser)
+                    .ProjectTo<TableDto>(_mapper.ConfigurationProvider)
                     .ToListAsync(token);
-                return Result<List<Table>>.Success(tables);
+
+                return Result<List<TableDto>>.Success(tables);
             }
         }
     }
