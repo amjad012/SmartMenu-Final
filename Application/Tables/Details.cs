@@ -13,7 +13,7 @@ namespace Application.Tables
         public class Query : IRequest<Result<TableDto>>
         {
             public Guid Id { get; set; }
-        }
+        } 
 
         public class Handler : IRequestHandler<Query, Result<TableDto>>
         {

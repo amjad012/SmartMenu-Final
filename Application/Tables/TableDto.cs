@@ -12,8 +12,8 @@ namespace Application.Tables
         public Guid Id { get; set; }
         public DateTime Date { get; set; } 
         public int Number { get; set; }
-
         public string HostUsername { get; set; }
+        public bool IsCancelled { get; set; }
         public ICollection<Profile> Attendees { get; set; }
     }
 }
