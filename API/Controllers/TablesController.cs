@@ -1,6 +1,7 @@
 using Application.Tables;
 using Domain;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -23,14 +24,14 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new Create.Command { Table = table }));
         }
-
+        [Authorize(Policy = "IsTableHost")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Edit(Guid id, Table table)
         {
             table.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command { Table = table }));
         }
-
+        [Authorize(Policy = "IsTableHost")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
