@@ -12,7 +12,7 @@ export default observer(function TableList() {
     return (
         <>
             {groupedTables.map(([group, tables]) => (
-                <Grid key={group} columns={3} >
+                <Grid key={group} columns={3} divided >
                     {tables.map(table => (
                         <TableListItem key={table.id} table={table} />
                     ))}

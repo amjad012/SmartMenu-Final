@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, GridRow } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
 import TableList from "./TableList";
@@ -16,10 +16,10 @@ export default observer(function TableDashboard() {
     if (tableStore.loadingInitial) return <LoadingComponent content='Loading tables...' />
     
     return (
-        <Grid>        
-            <Grid.Column >
-                <TableList />
-            </Grid.Column>
+        <Grid columns={3} divided>  
+            <Grid.Row >            
+                    <TableList />
+            </Grid.Row>          
         </Grid>
     )
 })

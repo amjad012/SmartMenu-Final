@@ -3,6 +3,7 @@ import { Button, Icon, Item, Segment } from 'semantic-ui-react';
 import { Table } from '../../../app/models/table';
 import React from 'react';
 import { format } from "date-fns";
+import TableListItemAtendee from './TableListItemAtendee';
 interface Props {
     table : Table
 }
@@ -30,7 +31,7 @@ export default function TableListItem({table}:Props) {
             </span>
         </Segment>
         <Segment secondary>
-             Table Sharing go here
+             <TableListItemAtendee attendees = {table.attendees!}/>
         </Segment>
         <Segment clearing>
             <span>description here</span>
