@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import {Table} from "../../../app/models/table";
 import { format } from "date-fns";
+import { useStore } from '../../../app/stores/store';
 
 
 const tableImageStyle = {
@@ -24,6 +25,7 @@ interface Props {
 }
 
 export default observer (function TableDetailedHeader({table}: Props) {
+    const {tableStore:{updateAttendance,loading}} = useStore();
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
@@ -39,7 +41,7 @@ export default observer (function TableDetailedHeader({table}: Props) {
                                 />
                                 <p>{format(table.date!, 'dd MMM yyyy')}</p>
                                 <p>
-                                    Opened by <strong>Bob</strong>
+                                    Opened by <strong><Link to={`/profile/${table.host?.username}`}>{table.host?.displayName}</Link></strong>
                                 </p>
                             </Item.Content>
                         </Item>
@@ -47,11 +49,15 @@ export default observer (function TableDetailedHeader({table}: Props) {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='teal'>Join Table</Button>
-                <Button>Cancel attendance</Button>
-                <Button as={Link} to={`/manage/${table.id}`} color='orange' floated='right'>
+                {table.isHost ? (
+                    <Button as={Link} to={`/manage/${table.id}`} color='orange' floated='right'>
                     Manage Table
                 </Button>
+                ) : table.isGoing ? (
+                    <Button loading={loading} onClick={updateAttendance}>Cancel attendance</Button>
+                ) : (
+                    <Button loading={loading} onClick={updateAttendance} color='teal'>Join Table</Button>
+                )}        
             </Segment>
         </Segment.Group>
     )

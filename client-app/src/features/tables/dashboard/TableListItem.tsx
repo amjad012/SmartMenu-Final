@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Button, Icon, Item, Segment } from 'semantic-ui-react';
+import { Button, Icon, Item, Label, Segment } from 'semantic-ui-react';
 import { Table } from '../../../app/models/table';
 import React from 'react';
 import { format } from "date-fns";
@@ -19,7 +19,21 @@ export default function TableListItem({table}:Props) {
                         <Item.Header as={Link} to={`/tables/${table.id}`}>
                             {table.number}
                             </Item.Header>
-                            <Item.Description>Table Opened By</Item.Description>
+                            <Item.Description style={{width:'90%'}}>Table Opened By {table.host?.displayName}</Item.Description>
+                            {table.isHost && ( 
+                                <Item.Description style={{width:'100%'}}>
+                                    <Label basic color='orange'>
+                                        You are Opened this table
+                                    </Label>
+                                </Item.Description>
+                            )}
+                            {table.isGoing && !table.isHost && ( 
+                                <Item.Description>
+                                    <Label basic color='green'>
+                                        You are inside this table
+                                    </Label>
+                                </Item.Description>
+                            )}
                     </Item.Content>
                 </Item>
             </Item.Group>

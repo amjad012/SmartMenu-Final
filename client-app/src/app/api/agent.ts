@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
-import { Table } from '../models/table';
+import { Table, TableFormValues } from '../models/table';
 import { router } from '../router/Routes';
 import { store } from '../stores/store';
 import { User, UserFormValues } from '../models/user';
@@ -73,9 +73,10 @@ const requests = {
 const Tables = {
     list: () => requests.get<Table[]>(`/tables`),
     details: (id: string) => requests.get<Table>(`/tables/${id}`),
-    create: (table: Table) => requests.post<void>(`/tables`, table),
-    update: (table: Table) => requests.put<void>(`/tables/${table.id}`, table),
-    delete: (id: string) => requests.del<void>(`/tables/${id}`)
+    create: (table: TableFormValues) => requests.post<void>(`/tables`, table),
+    update: (table: TableFormValues) => requests.put<void>(`/tables/${table.id}`, table),
+    delete: (id: string) => requests.del<void>(`/tables/${id}`),
+    attend:(id:string) => requests.post<void>(`/tables/${id}/attend`,{})
 }
 
 const Account = {

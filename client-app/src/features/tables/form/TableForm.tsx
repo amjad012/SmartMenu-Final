@@ -9,7 +9,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "../../../app/common/form/MyTextInput";
 import MyDateInput from "../../../app/common/form/MyDateInput";
-import { Table } from "../../../app/models/table";
+import { Table, TableFormValues } from "../../../app/models/table";
 
 export default observer(function TableForm() {
   const { tableStore } = useStore();
@@ -23,11 +23,7 @@ export default observer(function TableForm() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [table, setTable] = useState<Table>({
-    id: "",
-    number:0,
-    date:null,
-  });
+  const [table, setTable] = useState<TableFormValues>(new TableFormValues());
 
   const validationSchema = Yup.object({
     number: Yup.string().required("The Number is required"),
@@ -35,13 +31,16 @@ export default observer(function TableForm() {
   });
 
   useEffect(() => {
-    if (id) loadTable(id).then((table) => setTable(table!));
+    if (id) loadTable(id).then((table) => setTable(new TableFormValues(table)));
   }, [id, loadTable]);
 
-  function handleFormSubmit(table:Table) {
+  function handleFormSubmit(table:TableFormValues) {
       if (!table.id) {
-          table.id = uuid();
-          createTable(table).then(() => navigate(`/tables/${table.id}`))
+        let newTable = {
+          ...table,
+          id: uuid()
+        } ;  
+          createTable(newTable).then(() => navigate(`/tables/${newTable.id}`))
       } else {
           updateTable(table).then(() => navigate(`/tables/${table.id}`))
       }
@@ -72,7 +71,7 @@ export default observer(function TableForm() {
              />
             <Button
               disabled={isSubmitting || !dirty || !isValid}
-              loading={loading}
+              loading={isSubmitting}
               floated="right"
               positive
               type="submit"

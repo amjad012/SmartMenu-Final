@@ -1,8 +1,11 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { Table } from "../models/table";
+import { Table, TableFormValues } from "../models/table";
 import agent from "../api/agent";
 import { v4 as uuid } from 'uuid';
 import { format } from "date-fns";
+import { store } from "./store";
+import { Profile } from "../models/profile";
+import { profileEnd } from "console";
 
 export default class TableStore {
     tableRegistry = new Map<string, Table>();
@@ -67,6 +70,14 @@ export default class TableStore {
     }
 
     private setTable = (table: Table) => {
+        const user = store.userStore.user;
+        if(user){
+            table.isGoing = table.attendees!.some( 
+                a => a.username === user.username
+            )
+            table.isHost = table.hostUsername === user.username;
+            table.host = table.attendees?.find(x => x.username === table.hostUsername);
+        }
         table.date = new Date(table.date!)
         this.tableRegistry.set(table.id, table);
     }
@@ -79,36 +90,35 @@ export default class TableStore {
         this.loadingInitial = state;
     }
 
-    createTable = async (table: Table) => {
-        this.loading = true;
-        table.id = uuid();
+    createTable = async (table: TableFormValues) => {
+        const user = store.userStore.user;
+        const attendee = new Profile(user!);
         try {
             await agent.Tables.create(table);
+            const newTable = new Table(table);
+            newTable.hostUsername = user?.username;
+            newTable.attendees = [attendee];
+            this.setTable(newTable);
             runInAction(() => {
-                this.tableRegistry.set(table.id, table);
-                this.selectedTable = table;
-                this.editMode = false;
-                this.loading = false;
+                this.selectedTable = newTable;
             })
         } catch (error) {
             console.log(error);
-            runInAction(() => this.loading = false);
         }
     }
 
-    updateTable = async (table: Table) => {
-        this.loading = true;
+    updateTable = async (table: TableFormValues) => {
         try {
             await agent.Tables.update(table)
             runInAction(() => {
-                this.tableRegistry.set(table.id, table);
-                this.selectedTable = table;
-                this.editMode = false;
-                this.loading = false;
+                if(table.id){
+                    let updatedTable = {... this.getTable(table.id),...table}
+                    this.tableRegistry.set(table.id, updatedTable as Table);
+                    this.selectedTable = updatedTable as Table;
+                }
             })
         } catch (error) {
             console.log(error);
-            runInAction(() => this.loading = false);
         }
     }
 
@@ -125,8 +135,36 @@ export default class TableStore {
             runInAction(() => {
                 this.loading = false;
             })
+
+
         }
     }
+//this is the method we need to update the attendance for a user
+    updateAttendance = async() => {
+        const user = store.userStore.user;
+        this.loading = true;
 
-
+        try {
+            await agent.Tables.attend(this.selectedTable!.id)
+            runInAction(() => {
+                //We're going to remove the attendee object if they're cancelling their place
+                if(this.selectedTable?.isGoing)
+                {
+                    this.selectedTable.attendees = 
+                        this.selectedTable.attendees?.filter(a=> a.username !== user?.username)
+                    this.selectedTable.isGoing = false;   
+                } else {
+                    // going to add an attendee object if they're joining an table
+                    const attendee = new Profile(user!);
+                    this.selectedTable?.attendees?.push(attendee);
+                    this.selectedTable!.isGoing = true;
+                }
+                this.tableRegistry.set(this.selectedTable!.id, this.selectedTable!)
+            })
+        } catch (error) {
+            console.log(error);
+        }finally{
+            runInAction(() => this.loading =false);
+        }
+    }
 }
