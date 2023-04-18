@@ -16,7 +16,6 @@ export default observer(function TableForm() {
   const {
     createTable,
     updateTable,
-    loading,
     loadTable,
     loadingInitial,
   } = tableStore;

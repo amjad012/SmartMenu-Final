@@ -167,4 +167,18 @@ export default class TableStore {
             runInAction(() => this.loading =false);
         }
     }
+    cancelTableToggle = async () => {
+        this.loading = true;
+        try {
+            await agent.Tables.attend(this.selectedTable!.id);
+            runInAction(() => {
+                this.selectedTable!.isCancelled = !this.selectedTable?.isCancelled;
+                this.tableRegistry.set(this.selectedTable!.id, this.selectedTable!);
+            })
+        } catch (error) {
+            console.log(error);
+        } finally {
+            runInAction(() => this.loading = false);
+        }
+    }
 }

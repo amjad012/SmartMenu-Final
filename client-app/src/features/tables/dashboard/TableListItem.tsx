@@ -12,9 +12,12 @@ export default function TableListItem({table}:Props) {
     return (
        <Segment.Group>
         <Segment>
+            {table.isCancelled &&
+                <Label attached='top' color='red' content='Cancelled' style={{textAlign:'center'}} />
+            }
             <Item.Group>
                 <Item>
-                    <Item.Image size='tiny' circular src='/assets/user.png'/>
+                    <Item.Image style={{marginBottom:3}} size='tiny' circular src='/assets/user.png'/>
                     <Item.Content>
                         <Item.Header as={Link} to={`/tables/${table.id}`}>
                             {table.number}

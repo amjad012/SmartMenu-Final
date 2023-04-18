@@ -3,6 +3,7 @@ import {Image, List, Popup} from "semantic-ui-react";
 import {observer} from "mobx-react-lite";
 import { Link } from 'react-router-dom';
 import { Profile } from '../../../app/models/profile';
+import ProfileCard from '../../profiles/ProfileCard';
 
 
 interface Props {
@@ -14,10 +15,10 @@ export default observer(function TableListItemAttendee({attendees}: Props) {
         <List horizontal>
             {attendees.map(attendee => (
                 <Popup
-                    hoverable
+                    hoverable // mouse hover
                     key={attendee.username}
                     trigger={
-                        <List.Item as={Link} to={`/profile/${attendee.username}`}>
+                        <List.Item as={Link} to={`/profiles/${attendee.username}`}>
                             <Image size='mini'
                                    circular
                                    src={attendee.image || `/assets/user.png`} />
@@ -25,7 +26,7 @@ export default observer(function TableListItemAttendee({attendees}: Props) {
                     }
                 >
                     <Popup.Content>
-                        {/* <ProfileCard profile={attendee} /> */}
+                        {<ProfileCard profile={attendee} /> }
                     </Popup.Content>
                 </Popup>
             ))}
