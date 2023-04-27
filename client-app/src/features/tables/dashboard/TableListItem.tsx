@@ -8,7 +8,7 @@ interface Props {
     table : Table
 }
 export default function TableListItem({table}:Props) {
-
+//this file for diplay the table image and details from the home screen
     return (
        <Segment.Group>
         <Segment>
@@ -17,12 +17,13 @@ export default function TableListItem({table}:Props) {
             }
             <Item.Group>
                 <Item>
-                    <Item.Image style={{marginBottom:3}} size='tiny' circular src='/assets/user.png'/>
+                    <Item.Image style={{marginBottom:3}} size='tiny' circular 
+                        src={table.host?.image || '/assets/user.png'}/>
                     <Item.Content>
                         <Item.Header as={Link} to={`/tables/${table.id}`}>
                             {table.number}
                             </Item.Header>
-                            <Item.Description style={{width:'90%'}}>Table Opened By {table.host?.displayName}</Item.Description>
+                            <Item.Description style={{width:'90%'}}>Table Opened By <Link to={`/profiles/${table.hostUsername}`}>{table.host?.displayName}</Link></Item.Description>
                             {table.isHost && ( 
                                 <Item.Description style={{width:'100%'}}>
                                     <Label basic color='orange'>

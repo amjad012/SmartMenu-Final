@@ -7,6 +7,7 @@ import TestErrors from "../../features/errors/TestError";
 import NotFound from "../../features/errors/NotFound";
 import ServerError from "../../features/errors/ServerError";
 import LoginForm from "../../users/LoginForm";
+import ProfilePage from "../../features/profiles/ProfilePage";
 
 export const routes: RouteObject[] = [
     {
@@ -18,7 +19,7 @@ export const routes: RouteObject[] = [
             {path: 'tables/:id', element: <TableDetails />},
             {path: 'createTable', element: <TableForm key='create' />},
             {path: 'manage/:id', element: <TableForm key='manage' />},
-
+            {path: 'profiles/:username', element: <ProfilePage />},
             //for handling errors
             {path: 'errors', element: <TestErrors />},
             {path: 'not-found', element: <NotFound />},
