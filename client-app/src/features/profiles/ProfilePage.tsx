@@ -7,6 +7,8 @@ import { useStore } from "../../app/stores/store";
 import ProfileContent from "./ProfileContent";
 import ProfileHeader from "./ProfileHeader";
 
+//observer to react to any changes in our store
+// inside this component.
 export default observer(function ProfilePage() {
     const {username} = useParams();
     const {profileStore} = useStore();
