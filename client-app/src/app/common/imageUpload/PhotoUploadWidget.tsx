@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { Button, Grid, Header } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import PhotoUploadWidgetDropzone from './PhotoWidgetDropzone';
-import PhotoWidgetCropper from './PhotoWidgetCropper';
+import { Cropper } from 'react-cropper';
 import React from 'react';
+
 
 interface Props {
     loading: boolean;
