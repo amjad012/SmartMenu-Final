@@ -4,6 +4,7 @@ import { observer } from "mobx-react-lite";
 import PhotoUploadWidgetDropzone from './PhotoWidgetDropzone';
 import { Cropper } from 'react-cropper';
 import React from 'react';
+import PhotoWidgetCropper from './PhotoWidgetCropper';
 
 
 interface Props {
