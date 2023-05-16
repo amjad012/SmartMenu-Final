@@ -13,7 +13,7 @@ namespace Persistence
         public DbSet<Table> Tables { get; set; }
         public DbSet<TableAttendee> TableAttendees{get;set;}
         public DbSet<Photo> Photos { get; set; }
-
+        public DbSet<Comment> Comments{ get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //this is our configuration for our MANY to MANY relationship
