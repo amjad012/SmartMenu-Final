@@ -32,6 +32,13 @@ namespace Persistence
                 .HasForeignKey(aa => aa.TableId);
 
 
+            //if we delete an Table, it will cascade that delete
+            //down to the comments that were associated
+            builder.Entity<Comment>()
+            .HasOne(a => a.Table)
+            .WithMany(c => c.Comments)
+            .OnDelete(DeleteBehavior.Cascade);
+
         }
         
     }
