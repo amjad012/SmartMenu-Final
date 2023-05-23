@@ -181,4 +181,7 @@ export default class TableStore {
             runInAction(() => this.loading = false);
         }
     }
+    clearSelectedTable = () => {
+        this.selectedTable = undefined;
+    }
 }

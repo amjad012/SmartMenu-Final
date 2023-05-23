@@ -11,12 +11,13 @@ import TableDetailedHeader from "./TableDetailsHeader";
 
 export default observer(function TableDetails() {
     const {tableStore} = useStore();
-    const {selectedTable: table, loadTable, loadingInitial} = tableStore;
+    const {selectedTable: table, loadTable, loadingInitial, clearSelectedTable} = tableStore;
     const {id} = useParams();
 
     useEffect(() => {
         if (id) loadTable(id);
-    }, [id, loadTable])
+        return() => clearSelectedTable();
+    }, [id, loadTable,clearSelectedTable])
 
     if (loadingInitial || !table) return <LoadingComponent />;
 
@@ -25,7 +26,7 @@ export default observer(function TableDetails() {
             <Grid.Column width={10}>
                 <TableDetailedHeader table={table}/>
                 <TableDetailedInfo table={table}/>
-                <TableDetailedChat/>
+                <TableDetailedChat tableId={table.id}/>
             </Grid.Column>
             <Grid.Column width={6}>
                 <TableDetailedSidebar table ={table}/>
