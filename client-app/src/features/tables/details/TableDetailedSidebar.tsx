@@ -19,7 +19,7 @@ export default observer(function TableDetailedSidebar ({table: {attendees, host}
                 inverted
                 color='teal'
             >
-                {attendees.length} {attendees.length === 1 ? 'Person' : 'People'} going
+                {attendees.length} {attendees.length === 1 ? 'Person' : 'People'} Sitting here
             </Segment>
             <Segment attached>
                 <List relaxed divided>
@@ -31,14 +31,14 @@ export default observer(function TableDetailedSidebar ({table: {attendees, host}
                                 color='orange'
                                 ribbon='right'
                             >
-                                Host
+                                Table Opened
                             </Label>}
-                            <Image size='tiny' src={'/assets/user.png'} />
+                            <Image size='tiny' src={attendee.image} />
                             <Item.Content verticalAlign='middle'>
                                 <Item.Header as='h3'>
                                     <Link to={`/profiles/${attendee.username}`}>{attendee.displayName}</Link>
                                 </Item.Header>
-                                <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
+                                
                             </Item.Content>
                         </Item>
                     ))}

@@ -26,7 +26,7 @@ export default observer(function TableDetails() {
             <Grid.Column width={10}>
                 <TableDetailedHeader table={table}/>
                 <TableDetailedInfo table={table}/>
-                <TableDetailedChat tableId={table.id}/>
+                <TableDetailedChat tableId={table.id} table={table}/>
             </Grid.Column>
             <Grid.Column width={6}>
                 <TableDetailedSidebar table ={table}/>

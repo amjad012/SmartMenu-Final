@@ -8,7 +8,7 @@ interface Props {
     table : Table
 }
 export default function TableListItem({table}:Props) {
-//this file for diplay the table image and details from the home screen
+//this file for display the table image and details from the home screen
     return (
        <Segment.Group>
         <Segment>
