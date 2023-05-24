@@ -2,7 +2,7 @@ import { Formik, Form, Field, FieldProps } from 'formik';
 import { observer } from 'mobx-react-lite'
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { Segment, Header, Comment, Loader } from 'semantic-ui-react'
+import { Segment, Header, Comment, Loader, Button } from 'semantic-ui-react'
 import MyTextArea from '../../../app/common/form/MyTextArea';
 import { useStore } from '../../../app/stores/store';
 import * as Yup from 'yup';
@@ -35,7 +35,7 @@ export default observer(function ActivityDetailedChat({ tableId,table }: Props) 
                 color='teal'
                 style={{ border: 'none' }}
             >
-                <Header>Orders</Header>
+                <Button primary>Orders</Button>
             </Segment>
             <Segment attached clearing>
                 <Formik
@@ -98,7 +98,7 @@ export default observer(function ActivityDetailedChat({ tableId,table }: Props) 
                 color='blue'
                 style={{ border: 'none' }}
             >
-                <Header>Requests</Header>
+                <Button secondary>Requests</Button>
             </Segment>
             <Segment attached clearing>
                 <Formik

@@ -9,3 +9,7 @@ dotnet ef migeations add AddNameProperty -p Persistence -s API
 dotnet ef database drop -p Persistance -s API
 cd API
 dotnet watch run
+
+-- for delete table content inside databse base
+need to create new Quesry file and CTRL + P 
+DELETE FROM Comments
