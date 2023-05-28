@@ -7,7 +7,7 @@ namespace Application.Requests
 {
     public class RequestDto
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; } 
 
