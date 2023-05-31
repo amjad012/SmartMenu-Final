@@ -8,7 +8,6 @@ import TableDetailedChat from "./TableDetailedChat";
 import TableDetailedInfo from "./TableDetailedInfo";
 import TableDetailedSidebar from "./TableDetailedSidebar";
 import TableDetailedHeader from "./TableDetailsHeader";
-import RequestDetailedSidebar from "../../requests/details/RequestDetailedSidebar";
 
 export default observer(function TableDetails() {
     const {tableStore} = useStore();
@@ -31,7 +30,6 @@ export default observer(function TableDetails() {
             </Grid.Column>
             <Grid.Column width={6}>
                 <TableDetailedSidebar table ={table}/>
-                <RequestDetailedSidebar request={Request}/>
 
             </Grid.Column>
         </Grid>

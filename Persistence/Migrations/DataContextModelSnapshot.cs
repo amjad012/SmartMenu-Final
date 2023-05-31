@@ -135,23 +135,6 @@ namespace Persistence.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("Domain.Request", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Requests");
-                });
-
             modelBuilder.Entity("Domain.Table", b =>
                 {
                     b.Property<Guid>("Id")

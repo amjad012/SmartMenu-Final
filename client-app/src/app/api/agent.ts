@@ -5,7 +5,6 @@ import { router } from '../router/Routes';
 import { store } from '../stores/store';
 import { User, UserFormValues } from '../models/user';
 import { Photo, Profile } from '../models/profile';
-import { Request} from '../models/request';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -99,19 +98,11 @@ const Profiles ={
     setMainPhoto: (id: string) => axios.post(`/photos/${id}/setMain`, {}),
     deletePhoto: (id: string) => axios.delete(`/photos/${id}`)
 }
-const Requests ={
-    list: () => requests.get<Request[]>(`/requests`),
-    details: (id: string) => requests.get<Request>(`/requests/${id}`),
-    create: (request: Request) => requests.post<void>(`/requests`, request),
-    update: (request: Request) => requests.put<void>(`/requests/${request.id}`, request),
-    delete: (id: string) => requests.del<void>(`/requests/${id}`)
-}
+
 const agent = {
     Tables,
     Account,
-    Profiles,
-    Requests
-    
-}
+    Profiles
+};
 
 export default agent;

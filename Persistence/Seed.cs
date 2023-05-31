@@ -40,31 +40,6 @@ namespace Persistence
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
-
-                var requests = new List<Request>
-                {
-                    new Request
-                    {
-                        Name = "Cleaning"
-                    },
-                    new Request
-                    {
-                        Name = "Check"
-                    },   
-                    new Request
-                    {
-                        Name = "Fork"
-                    },
-                    new Request
-                    {
-                        Name = "Plate"
-                    },   
-                    new Request
-                    {
-                        Name = "Knife"
-                    },      
-
-                };
                 var tables = new List<Table> 
                 {
                     new Table
@@ -244,7 +219,6 @@ namespace Persistence
                 };
 
                 await context.Tables.AddRangeAsync(tables);
-                await context.Requests.AddRangeAsync(requests);
                 await context.SaveChangesAsync();
             }
         }
