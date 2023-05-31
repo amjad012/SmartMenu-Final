@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using Domain;
 using Microsoft.AspNetCore.Identity;
@@ -40,6 +41,22 @@ namespace Persistence
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
+                var demands = new List<Demand>
+                {
+                    new Demand
+                    {
+                        Body = "Cleaning the table"
+                    },
+                    new Demand
+                    {
+                        Body = "Check"
+                    },
+                    new Demand
+                    {
+                        Body = "Fork"
+                    },
+
+                };
                 var tables = new List<Table> 
                 {
                     new Table
@@ -219,6 +236,7 @@ namespace Persistence
                 };
 
                 await context.Tables.AddRangeAsync(tables);
+                await context.Demands.AddRangeAsync(demands);
                 await context.SaveChangesAsync();
             }
         }

@@ -14,6 +14,8 @@ namespace Persistence
         public DbSet<TableAttendee> TableAttendees{get;set;}
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Comment> Comments{ get; set; }
+        public DbSet<Demand> Demands { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //this is our configuration for our MANY to MANY relationship
