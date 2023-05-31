@@ -1,10 +1,12 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { Table, TableFormValues } from '../models/table';
+
 import { router } from '../router/Routes';
 import { store } from '../stores/store';
 import { User, UserFormValues } from '../models/user';
 import { Photo, Profile } from '../models/profile';
+import { Demand, DemandFormValues } from '../models/demand';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -98,11 +100,19 @@ const Profiles ={
     setMainPhoto: (id: string) => axios.post(`/photos/${id}/setMain`, {}),
     deletePhoto: (id: string) => axios.delete(`/photos/${id}`)
 }
+const Demands = {
+    list: () => requests.get<Demand[]>(`/demands`),
+    details: (id: string) => requests.get<Demand>(`/demands/${id}`),
+    create: (demand: DemandFormValues) => requests.post<void>(`/demands`, demand),
+    update: (demand: DemandFormValues) => requests.put<void>(`/demands/${demand.id}`, demand),
+    delete: (id: string) => requests.del<void>(`/demands/${id}`),
+}
 
 const agent = {
     Tables,
     Account,
-    Profiles
+    Profiles,
+    Demands
 };
 
 export default agent;

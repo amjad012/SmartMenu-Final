@@ -28,6 +28,9 @@ export const routes: RouteObject[] = [
 
             //for users
             {path: 'login', element: <LoginForm key='manage' />},
+
+            //for demands
+            // {path: 'demands', element: <DemandDashboard />},
         ]
     }
 ]
