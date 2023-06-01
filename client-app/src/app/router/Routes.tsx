@@ -8,6 +8,7 @@ import NotFound from "../../features/errors/NotFound";
 import ServerError from "../../features/errors/ServerError";
 import LoginForm from "../../users/LoginForm";
 import ProfilePage from "../../features/profiles/ProfilePage";
+import DemandDashboard from "../../features/demands/dshboard/DemandDashboard";
 
 export const routes: RouteObject[] = [
     {
@@ -30,7 +31,7 @@ export const routes: RouteObject[] = [
             {path: 'login', element: <LoginForm key='manage' />},
 
             //for demands
-            // {path: 'demands', element: <DemandDashboard />},
+            {path: 'demands', element: <DemandDashboard />},
         ]
     }
 ]
