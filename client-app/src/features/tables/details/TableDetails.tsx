@@ -12,6 +12,9 @@ import DemandDetailedSidebar from "../../demands/details/DemandDetailedSidebar";
 
 export default observer(function TableDetails() {
     const {tableStore} = useStore();
+    const {demandStore} = useStore();
+
+    const {selectedDemand: demand} = demandStore;
     const {selectedTable: table, loadTable, loadingInitial, clearSelectedTable} = tableStore;
     const {id} = useParams();
 
@@ -21,7 +24,7 @@ export default observer(function TableDetails() {
     }, [id, loadTable,clearSelectedTable])
 
     if (loadingInitial || !table) return <LoadingComponent />;
-
+    
     return (
         <Grid>
             <Grid.Column width={10}>
@@ -30,9 +33,12 @@ export default observer(function TableDetails() {
                 <TableDetailedChat tableId={table.id} table={table}/>
             </Grid.Column>
             <Grid.Column width={6}>
-                <TableDetailedSidebar table ={table}/>
-            
-            </Grid.Column>
+                <TableDetailedSidebar table ={table}/>        
+            </Grid.Column> 
+            <Grid.Column width={6}>
+                {/* <DemandDetailedSidebar demand ={demand}/>         */}
+            </Grid.Column>         
         </Grid>
     )
+    
 })

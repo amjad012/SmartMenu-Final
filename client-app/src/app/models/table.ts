@@ -13,7 +13,7 @@ export interface Table {
 }
 export class Table implements Table {
     constructor(init?:TableFormValues){
-     Object.assign(this, init);   
+     Object.assign(this, init);  
     }
 }
 export class TableFormValues{

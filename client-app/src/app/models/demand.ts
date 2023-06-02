@@ -2,6 +2,7 @@ export interface Demand {
     id: string;
     body : string;
     demandees:Demand[];
+    
 }
 
 export class Demand implements Demand {
